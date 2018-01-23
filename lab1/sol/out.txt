@@ -1,0 +1,26 @@
+11
+23
+36
+34
+49
+27
+44
+34
+12
+35
+46
+11
+Called insertion sort
+List size was > 1
+Value is 46
+Value is 35
+Value is 12
+Value is 34
+Value is 44
+Value is 27
+Value is 49
+Value is 34
+Value is 36
+Value is 23
+Value is 11
+11 12 23 27 34 34 35 36 44 46 49 

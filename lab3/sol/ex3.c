@@ -33,7 +33,7 @@ pnode createList(int N) {
 	head->data = rand() ; 
 	head->next = NULL ; 
 	pnode curr = head ; 
-	for(int i = 1 ; i < N ; ++i) {
+	for(i = 1 ; i < N ; ++i) {
 		pnode new = newNode() ; 
 		new->data = rand() ; 
 		new->next = NULL ; 
@@ -96,14 +96,20 @@ pnode makeCircularList(pnode list) {
 }
 int main() {
 	srand(time(0));
-	printf("Size of node is %u\n",sizeof(node)) ;
 	printf("Enter the size of the list : ");
 	int N ; 
 	scanf("%d",&N) ; 
+    struct timeval t1,t2 ; 
+    double elapsedTime ; 
+    gettimeofday(&t1,NULL) ;
 	pnode list = createList(N) ;
 	list = createCycle(list) ;
 	int isCyclic = testCyclic(list) ;
+    gettimeofday(&t2,NULL) ;
+    elapsedTime = (t2.tv_sec - t1.tv_sec) * 1000.0 ; 
+    elapsedTime += (t2.tv_usec - t1.tv_usec) / 1000.0 ; 
 	if(isCyclic) printf("List has a cycle\n");
-	else printf("List is linear");
+	else printf("List is linear\n");
+    printf("Total time taken is %f ms\n" , elapsedTime) ;
 	return 0;
 }

@@ -9,6 +9,17 @@ void* myalloc(int size , int count) {
 	totalMem += (size * count) ; 
 	return new ; 	
 }
+/* alternate solution 
+void* myalloc(int size , int count) {
+	totalMem += (size * count) ; 
+	void *temp = malloc(size * count + 4) ; 
+	*((int*)temp) = count ; return temp + 4 ; 
+}
+void myfree(void **ptr , int size) {
+	totalMem -= (size * *(int*(ptr-4)) ; 
+	free(ptr - 4) ; 
+}
+*/
 
 void myfree(void** ptr , int count , int size) {
 	totalMem -= (size * count) ; 

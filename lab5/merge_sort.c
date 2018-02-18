@@ -33,16 +33,17 @@ void iterative_merge_sort(Element arr[] , int sz) {
 	while(group_size < sz) {
 		for(i = 0 ; i < sz - 1 ; i += group_size*2) {
 			int ii = i + group_size - 1 ; 
+            if(ii > sz - 1) ii = sz - 1 ; 
 			int j = ii + 1 ; 
 			int jj = j + group_size - 1 ; 
 			if(jj > sz - 1) jj = sz - 1 ; 
 			int total_size = ii - i + 1 + jj - j + 1 ; 
-			Element buffer[total_size] ;
+            Element buffer[total_size] ;
 			merge(arr + i , ii - i + 1 , arr + j , jj - j + 1 , buffer) ; 
 			for(x = 0 ; x < total_size ; ++x) {
 				arr[i + x] = buffer[x] ; 
 			}
-		}
+	    }
 		group_size *= 2 ;
 	}
 }
@@ -69,10 +70,10 @@ FILE* read_stuff(FILE* ptr , Element arr[] , int count) {
 	return ptr ;
 }
 int main() {
-	FILE *ptr = fopen("1024.txt","r") ;
+	FILE *ptr = fopen("10240.txt","r") ;
 	if(ptr == NULL) {
 		printf("Cant read file !!!!") ; 
-		eixt(0) ; 
+		exit(0) ; 
 	} 
 	int sz = 0 ; 
 	char buff[25] ; 
@@ -81,7 +82,7 @@ int main() {
 		fscanf(ptr,"%[^,],%f\n",buff,&temp) ;
 		sz++ ; 
 	}
-	ptr = fopen("1024.txt","r") ;
+	ptr = fopen("10240.txt","r") ;
 	Element arr[sz] ; 
 	int index = 0 ; 
 	while(!feof(ptr)) {
@@ -92,42 +93,5 @@ int main() {
 	for(index = 0 ; index < sz ; ++index) {
 		printf("%s %f\n",arr[index].Name , arr[index].cgpa);
 	}
-	
-// THIS IS NOT RIGHT YET , PROCEED AT YOUR OWN RISK
-
-	/*FILE* ptr_big = fopen(FILE_BIG,"r");
-	if(ptr_big == NULL) {
-		printf("Cant read the file\n") ; 
-		exit(0);
-	}
-	int total_entries = count_entries(ptr_big) ; 
-	Element arr1[total_entries/2] ; 
-	Element arr2[total_entries - total_entries/2] ;
-	ptr_big = read_stuff(ptr_big , arr1 , total_entries/2) ; 
-	//recursive_merge_sort(arr1 , total_entries) ; 
-	int i = 0 ; 
-	for(i = 0 ; i < total_entries/2 ; ++i) {
-	//	printf("%s %f\n" , arr1[i].Name , arr1[i].cgpa) ; 
-	}
-	FILE* file1 = fopen("array1.txt","w") ; 
-	if(file1 == NULL) {
-		printf("Cant write to file\n"); exit(0) ; 
-	}
-	int index = 0 ; 
-	while(index < total_entries/2) {
-		printf("%s %f\n" , arr1[index].Name , arr1[index].cgpa) ; 
-		fprintf(file1,"%s %f\n",arr1[index].Name,arr1[index].cgpa); index++ ; 
-	}
-	ptr_big = read_stuff(ptr_big , arr2 , total_entries - total_entries/2) ;
-	recursive_merge_sort(arr2 , total_entries - total_entries/2) ;
-	FILE* file2 = fopen("array2.txt","w") ; 
-	if(file2 == NULL) {
-		printf("Cant write to file\n"); exit(0) ; 
-	}
-	index = 0 ; 
-	while(index < total_entries - total_entries/2) {
-		fprintf(file2,"%s %f\n",arr2[index].Name , arr2[index].cgpa) ;
-		++index ; 
-	}*/
-	return 0 ; 
+    return 0 ; 
 }

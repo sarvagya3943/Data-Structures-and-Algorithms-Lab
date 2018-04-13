@@ -12,7 +12,7 @@ int max(int a , int b) {
 struct node {
 	int val ; 
 	node *left , *right ;
-    int height ;
+    int height ; // if you want to store balance , height would need to be calculated in linear time , your call 
 	int count ; // if we cant store this , we can calculate this in O(subtree size) everytime , that'd be stupid though 
 }; 
 
